@@ -18,6 +18,7 @@ import com.example.sergio.bookstarapp.mvp.booksList.BooksFragment
 import com.example.sergio.bookstarapp.mvp.booksList.BooksFragment.OnListFragmentInteractionListener
 import com.example.sergio.bookstarapp.mvp.favorites.FavoritesActivity
 import com.example.sergio.bookstarapp.mvp.mainActivity.SearchBarFragment.SearchBarFragmentInteractionListener
+import com.example.sergio.bookstarapp.room.BookEntity
 import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity(),
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity(),
     OnListFragmentInteractionListener,
     SearchBarFragmentInteractionListener,
     BookDetailFragmentInteractionListener {
+  override fun onListFragmentInteraction(item: BookEntity) {
+    TODO(
+        "not implemented"
+    ) //To change body of created functions use File | Settings | File Templates.
+  }
 
   //UI BINDINGS
 

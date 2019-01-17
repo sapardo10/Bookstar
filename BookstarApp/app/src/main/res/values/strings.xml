@@ -11,4 +11,6 @@
   <string name="title">Title</string>
   <string name="action_favorite">favorites</string>
   <string name="favorites">Favorite Books</string>
+  <string name="of_editions"># of editions</string>
+  <string name="first_publish">First publish</string>
 </resources>

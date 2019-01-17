@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.sergio.bookstarapp.R
-import com.example.sergio.bookstarapp.api.Model.Book
 import com.example.sergio.bookstarapp.mvp.booksList.BooksFragment.OnListFragmentInteractionListener
 import com.example.sergio.bookstarapp.mvp.booksList.MyItemRecyclerViewAdapterEntity.ViewHolder
 import com.example.sergio.bookstarapp.room.BookEntity
@@ -22,7 +21,7 @@ class MyItemRecyclerViewAdapterEntity(
 
   init {
     mOnClickListener = View.OnClickListener { v ->
-      val item = v.tag as Book
+      val item = v.tag as BookEntity
       mListener?.onListFragmentInteraction(item)
     }
   }

@@ -3,6 +3,7 @@ package com.example.sergio.bookstarapp.mvp.interactor
 import android.arch.lifecycle.LiveData
 import android.content.Context
 import android.os.AsyncTask
+import android.util.Log
 import com.example.sergio.bookstarapp.api.Model.Book
 import com.example.sergio.bookstarapp.room.BookDao
 import com.example.sergio.bookstarapp.room.BookEntity
@@ -51,7 +52,12 @@ class BookInteractor(val context: Context) {
 
   private class insertAsyncTask internal constructor(private val mAsyncTaskDao: BookDao) : AsyncTask<BookEntity, Void, Void>() {
     override fun doInBackground(vararg params: BookEntity): Void? {
-      mAsyncTaskDao.insert(params[0])
+      try {
+        mAsyncTaskDao.insert(params[0])
+      } catch (e: Exception) {
+        Log.d("ERROR", "The element already exist on the database")
+      }
+
       return null
     }
   }

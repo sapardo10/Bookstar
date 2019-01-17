@@ -25,6 +25,8 @@ class BookDetailFragment : Fragment() {
   @BindView(R.id.authors_text) lateinit var authors: TextView
   @BindView(R.id.book_cover) lateinit var bookCover: ImageView
   @BindView(R.id.ic_favorite) lateinit var favoriteCheckBox: CheckBox
+  @BindView(R.id.edition_count) lateinit var editionCount: TextView
+  @BindView(R.id.first_publish) lateinit var firstPublish: TextView
 
   //VARIABLES
 
@@ -70,13 +72,17 @@ class BookDetailFragment : Fragment() {
     this.book = book
     bookTitle.text = book.title
     authors.text = getNameAuthors(book.authorsName)
-    favoriteCheckBox.isSelected = false
+    favoriteCheckBox.isChecked = false
+    editionCount.text = book.editionCount?.toString()
+    firstPublish.text = book.firstPublishYear?.toString()
   }
 
   fun updateDetails(book: BookEntity) {
     bookTitle.text = book.title
     authors.text = book.author
-    favoriteCheckBox.isSelected = book.isFavorite
+    favoriteCheckBox.isChecked = book.isFavorite
+    editionCount.text = book.editionCount?.toString()
+    firstPublish.text = book.firstPublishYear?.toString()
   }
 
   private fun getNameAuthors(authorsName: Array<String>): String {

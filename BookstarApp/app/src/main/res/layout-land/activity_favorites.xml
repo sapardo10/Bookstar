@@ -35,7 +35,7 @@
       app:layout_constraintWidth_percent="0.4"
       />
   <fragment
-      android:id="@+id/fragment"
+      android:id="@+id/book_detail"
       android:name="com.example.sergio.bookstarapp.mvp.bookDetail.BookDetailFragment"
       android:layout_width="0dp"
       android:layout_height="match_parent"

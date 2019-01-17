@@ -73,6 +73,7 @@ class BooksFragment : Fragment() {
 
   interface OnListFragmentInteractionListener {
     fun onListFragmentInteraction(item: Book)
+    fun onListFragmentInteraction(item: BookEntity)
   }
 
 }

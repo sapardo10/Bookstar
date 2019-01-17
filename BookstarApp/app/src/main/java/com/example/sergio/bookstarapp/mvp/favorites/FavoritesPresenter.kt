@@ -8,7 +8,7 @@ import com.example.sergio.bookstarapp.room.BookEntity
 class FavoritesPresenter(private val mView: FavoritesView) {
 
   var bookInteractor: BookInteractor? = null
-  private val allFavorites: LiveData<List<BookEntity>>
+  var allFavorites: LiveData<List<BookEntity>>
 
   init {
     bookInteractor = BookInteractor(mView as Context)
