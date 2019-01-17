@@ -25,7 +25,7 @@
 
   <fragment
       android:id="@+id/books_list"
-      android:name="com.example.sergio.bookstarapp.mvp.BooksFragment"
+      android:name="com.example.sergio.bookstarapp.mvp.booksList.BooksFragment"
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:layout_marginBottom="8dp"

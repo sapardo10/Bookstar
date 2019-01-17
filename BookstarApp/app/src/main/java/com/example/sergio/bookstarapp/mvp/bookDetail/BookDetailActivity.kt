@@ -19,6 +19,7 @@ class BookDetailActivity : AppCompatActivity(), BookDetailFragmentInteractionLis
     bookDetailFragment =
         supportFragmentManager.findFragmentById(R.id.book_detail_fragment) as BookDetailFragment?
     bookDetailFragment!!.updateDetails(book)
+    supportActionBar!!.setHomeButtonEnabled(true)
   }
 
   override fun onFavoritePressedFragmentInteraction() {

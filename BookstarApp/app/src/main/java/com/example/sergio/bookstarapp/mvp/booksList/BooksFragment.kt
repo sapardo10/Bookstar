@@ -1,4 +1,4 @@
-package com.example.sergio.bookstarapp.mvp
+package com.example.sergio.bookstarapp.mvp.booksList
 
 import android.content.Context
 import android.os.Bundle
@@ -34,14 +34,17 @@ class BooksFragment : Fragment() {
           else -> GridLayoutManager(context, columnCount)
         }
         var emptyList = mutableListOf<Book>()
-        adapter = MyItemRecyclerViewAdapter(emptyList, listener)
+        adapter = MyItemRecyclerViewAdapter(
+            emptyList, listener
+        )
       }
     }
     return view
   }
 
   fun updateList(booksList: List<Book>) {
-    view?.adapter = MyItemRecyclerViewAdapter(booksList, listener)
+    view?.adapter =
+        MyItemRecyclerViewAdapter(booksList, listener)
 
   }
 

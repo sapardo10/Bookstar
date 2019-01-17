@@ -3,18 +3,17 @@ package com.example.sergio.bookstarapp.mvp.mainActivity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import butterknife.ButterKnife
 import com.example.sergio.bookstarapp.R
 import com.example.sergio.bookstarapp.R.layout
 import com.example.sergio.bookstarapp.api.Model.Book
-import com.example.sergio.bookstarapp.mvp.BooksFragment
-import com.example.sergio.bookstarapp.mvp.BooksFragment.OnListFragmentInteractionListener
 import com.example.sergio.bookstarapp.mvp.bookDetail.BookDetailActivity
 import com.example.sergio.bookstarapp.mvp.bookDetail.BookDetailFragment
 import com.example.sergio.bookstarapp.mvp.bookDetail.BookDetailFragment.BookDetailFragmentInteractionListener
+import com.example.sergio.bookstarapp.mvp.booksList.BooksFragment
+import com.example.sergio.bookstarapp.mvp.booksList.BooksFragment.OnListFragmentInteractionListener
 import com.example.sergio.bookstarapp.mvp.mainActivity.SearchBarFragment.SearchBarFragmentInteractionListener
 import com.google.gson.Gson
 
@@ -39,14 +38,6 @@ class MainActivity : AppCompatActivity(),
     booksListFragment = supportFragmentManager.findFragmentById(R.id.books_list) as BooksFragment?
     bookDetailFragment =
         supportFragmentManager.findFragmentById(R.id.book_detail) as BookDetailFragment?
-  }
-
-  override fun onSaveInstanceState(
-    outState: Bundle?,
-    outPersistentState: PersistableBundle?
-  ) {
-    super.onSaveInstanceState(outState, outPersistentState)
-
   }
 
   override fun updateBooksList(books: List<Book>) {

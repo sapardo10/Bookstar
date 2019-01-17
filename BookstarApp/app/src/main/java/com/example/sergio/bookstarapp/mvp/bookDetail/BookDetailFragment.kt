@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import butterknife.BindView
@@ -22,6 +23,7 @@ class BookDetailFragment : Fragment() {
   @BindView(R.id.book_title) lateinit var bookTitle: TextView
   @BindView(R.id.authors_text) lateinit var authors: TextView
   @BindView(R.id.book_cover) lateinit var bookCover: ImageView
+  @BindView(R.id.ic_favorite) lateinit var favoriteCheckBox: CheckBox
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -31,6 +33,11 @@ class BookDetailFragment : Fragment() {
     var view = inflater.inflate(R.layout.fragment_book_detail, container, false)
     ButterKnife.bind(this, view)
     return view
+  }
+
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+
   }
 
   fun onFavoritePressed() {
@@ -53,7 +60,19 @@ class BookDetailFragment : Fragment() {
 
   fun updateDetails(book: Book) {
     bookTitle.text = book.title
-    authors.text = book.authorsName[0]
+    authors.text = getNameAuthors(book.authorsName)
+    favoriteCheckBox.isSelected = false
+  }
+
+  private fun getNameAuthors(authorsName: Array<String>): String {
+    var res = "No authors"
+    if (authorsName != null) {
+      res = ""
+      for (author in authorsName) {
+        res += "$author ,"
+      }
+    }
+    return res
   }
 
   interface BookDetailFragmentInteractionListener {

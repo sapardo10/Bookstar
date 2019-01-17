@@ -1,4 +1,4 @@
-package com.example.sergio.bookstarapp.mvp
+package com.example.sergio.bookstarapp.mvp.booksList
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,14 +7,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.sergio.bookstarapp.R
 import com.example.sergio.bookstarapp.api.Model.Book
-import com.example.sergio.bookstarapp.mvp.BooksFragment.OnListFragmentInteractionListener
+import com.example.sergio.bookstarapp.mvp.booksList.BooksFragment.OnListFragmentInteractionListener
+import com.example.sergio.bookstarapp.mvp.booksList.MyItemRecyclerViewAdapter.ViewHolder
 import kotlinx.android.synthetic.main.fragment_books_list_item.view.content
 import kotlinx.android.synthetic.main.fragment_books_list_item.view.item_number
 
 class MyItemRecyclerViewAdapter(
   private val mValues: List<Book>,
   private val mListener: OnListFragmentInteractionListener?
-) : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ViewHolder>() {
 
   private val mOnClickListener: View.OnClickListener
 
@@ -40,7 +41,11 @@ class MyItemRecyclerViewAdapter(
   ) {
     val item = mValues[position]
     holder.mIdView.text = item?.title
-    holder.mContentView.text = item?.authorsName[0]
+    var author = ""
+    if (item?.authorsName != null) {
+      author = item?.authorsName[0]
+    }
+    holder.mContentView.text = author
 
     with(holder.mView) {
       tag = item

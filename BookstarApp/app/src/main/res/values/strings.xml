@@ -3,8 +3,10 @@
   <string name="search">Search</string>
   <string name="books">Books</string>
   <string name="write_the_author_or_the_title_of_the_book">Write the author or the title of the book</string>
-
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="no_authors_text">No authors</string>
+  <string name="title_activity_favorites">FavoritesActivity</string>
+  <string name="cover_of_the_book">Cover of the book</string>
+  <string name="favorite">Favorite</string>
+  <string name="authors">Authors</string>
+  <string name="title">Title</string>
 </resources>
