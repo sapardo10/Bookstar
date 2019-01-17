@@ -6,19 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.sergio.bookstarapp.R
-
+import com.example.sergio.bookstarapp.api.Model.Book
 import com.example.sergio.bookstarapp.mvp.BooksFragment.OnListFragmentInteractionListener
-import com.example.sergio.bookstarapp.mvp.dummy.DummyContent.DummyItem
+import kotlinx.android.synthetic.main.fragment_books_list_item.view.content
+import kotlinx.android.synthetic.main.fragment_books_list_item.view.item_number
 
-import kotlinx.android.synthetic.main.fragment_books_list_item.view.*
-
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
- * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
- */
 class MyItemRecyclerViewAdapter(
-  private val mValues: List<DummyItem>,
+  private val mValues: List<Book>,
   private val mListener: OnListFragmentInteractionListener?
 ) : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
 
@@ -26,9 +20,7 @@ class MyItemRecyclerViewAdapter(
 
   init {
     mOnClickListener = View.OnClickListener { v ->
-      val item = v.tag as DummyItem
-      // Notify the active callbacks interface (the activity, if the fragment is attached to
-      // one) that an item has been selected.
+      val item = v.tag as Book
       mListener?.onListFragmentInteraction(item)
     }
   }
@@ -47,8 +39,9 @@ class MyItemRecyclerViewAdapter(
     position: Int
   ) {
     val item = mValues[position]
-    holder.mIdView.text = item.id
-    holder.mContentView.text = item.content
+    holder.mIdView.text = item?.title
+    holder.mContentView.text = item?.authorsNames?.get(0)
+        ?.name
 
     with(holder.mView) {
       tag = item

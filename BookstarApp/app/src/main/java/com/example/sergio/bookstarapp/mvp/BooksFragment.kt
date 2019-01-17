@@ -10,39 +10,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.sergio.bookstarapp.R
+import com.example.sergio.bookstarapp.api.Model.Book
 
-import com.example.sergio.bookstarapp.mvp.dummy.DummyContent
-import com.example.sergio.bookstarapp.mvp.dummy.DummyContent.DummyItem
-
-/**
- * A fragment representing a list of Items.
- * Activities containing this fragment MUST implement the
- * [BooksFragment.OnListFragmentInteractionListener] interface.
- */
 class BooksFragment : Fragment() {
 
   private var columnCount = 1
 
   private var listener: OnListFragmentInteractionListener? = null
 
+  private var view: RecyclerView? = null
+
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    val view = inflater.inflate(R.layout.fragment_books_list, container, false)
+    view = inflater.inflate(R.layout.fragment_books_list, container, false) as RecyclerView?
 
-    // Set the adapter
     if (view is RecyclerView) {
-      with(view) {
+      with(view!!) {
         layoutManager = when {
           columnCount <= 1 -> LinearLayoutManager(context)
           else -> GridLayoutManager(context, columnCount)
         }
-        adapter = MyItemRecyclerViewAdapter(DummyContent.ITEMS, listener)
+        var emptyList = mutableListOf<Book>()
+        adapter = MyItemRecyclerViewAdapter(emptyList, listener)
       }
     }
     return view
+  }
+
+  fun updateList(booksList: List<Book>) {
+    view?.adapter = MyItemRecyclerViewAdapter(booksList, listener)
+
   }
 
   override fun onAttach(context: Context) {
@@ -62,7 +62,7 @@ class BooksFragment : Fragment() {
   }
 
   interface OnListFragmentInteractionListener {
-    fun onListFragmentInteraction(item: DummyItem?)
+    fun onListFragmentInteraction(item: Book?)
   }
 
 }
