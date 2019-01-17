@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    >
+  <TextView
+      android:id="@+id/title"
+      android:layout_width="wrap_content"
+      android:layout_height="18dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="16dp"
+      android:text="@string/favorites"
+      app:layout_constraintEnd_toEndOf="@+id/books_list"
+      app:layout_constraintStart_toStartOf="@+id/books_list"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+  <fragment
+      android:id="@+id/books_list"
+      android:name="com.example.sergio.bookstarapp.mvp.booksList.BooksFragment"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_marginBottom="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/title"
+      app:layout_constraintVertical_bias="0.0"
+      app:layout_constraintWidth_percent="0.4"
+      />
+  <fragment
+      android:id="@+id/fragment"
+      android:name="com.example.sergio.bookstarapp.mvp.bookDetail.BookDetailFragment"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_marginBottom="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/books_list"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintWidth_percent="0.6"
+      />
 </android.support.constraint.ConstraintLayout>

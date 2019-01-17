@@ -13,6 +13,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.sergio.bookstarapp.R
 import com.example.sergio.bookstarapp.api.Model.Book
+import com.example.sergio.bookstarapp.room.BookEntity
 
 class BookDetailFragment : Fragment() {
 
@@ -25,6 +26,10 @@ class BookDetailFragment : Fragment() {
   @BindView(R.id.book_cover) lateinit var bookCover: ImageView
   @BindView(R.id.ic_favorite) lateinit var favoriteCheckBox: CheckBox
 
+  //VARIABLES
+
+  private var book: Book? = null
+
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
@@ -32,16 +37,19 @@ class BookDetailFragment : Fragment() {
   ): View? {
     var view = inflater.inflate(R.layout.fragment_book_detail, container, false)
     ButterKnife.bind(this, view)
+    bindChangeStateListener()
     return view
   }
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
-
+  private fun bindChangeStateListener() {
+    favoriteCheckBox.setOnCheckedChangeListener { _, checked ->
+      onFavoritePressed(checked)
+    }
   }
 
-  fun onFavoritePressed() {
-    listener?.onFavoritePressedFragmentInteraction()
+  fun onFavoritePressed(isFavorite: Boolean) {
+    if (book != null)
+      listener?.onFavoritePressedFragmentInteraction(book!!, isFavorite)
   }
 
   override fun onAttach(context: Context) {
@@ -59,9 +67,16 @@ class BookDetailFragment : Fragment() {
   }
 
   fun updateDetails(book: Book) {
+    this.book = book
     bookTitle.text = book.title
     authors.text = getNameAuthors(book.authorsName)
     favoriteCheckBox.isSelected = false
+  }
+
+  fun updateDetails(book: BookEntity) {
+    bookTitle.text = book.title
+    authors.text = book.author
+    favoriteCheckBox.isSelected = book.isFavorite
   }
 
   private fun getNameAuthors(authorsName: Array<String>): String {
@@ -76,7 +91,10 @@ class BookDetailFragment : Fragment() {
   }
 
   interface BookDetailFragmentInteractionListener {
-    fun onFavoritePressedFragmentInteraction()
+    fun onFavoritePressedFragmentInteraction(
+      book: Book,
+      isFavorite: Boolean
+    )
   }
 
 }

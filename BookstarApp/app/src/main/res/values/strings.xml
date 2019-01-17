@@ -9,4 +9,6 @@
   <string name="favorite">Favorite</string>
   <string name="authors">Authors</string>
   <string name="title">Title</string>
+  <string name="action_favorite">favorites</string>
+  <string name="favorites">Favorite Books</string>
 </resources>

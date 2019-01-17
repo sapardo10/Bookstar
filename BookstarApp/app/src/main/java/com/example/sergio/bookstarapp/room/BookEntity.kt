@@ -12,6 +12,5 @@ data class BookEntity(
   val coverId: Int,
   val hasFullText: Boolean,
   val editionCount: Int,
-  val authorsName: String,
   val firstPublishYear: Int
 )

@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.sergio.bookstarapp.R
 import com.example.sergio.bookstarapp.api.Model.Book
+import com.example.sergio.bookstarapp.room.BookEntity
 
 class BooksFragment : Fragment() {
 
@@ -45,6 +46,12 @@ class BooksFragment : Fragment() {
   fun updateList(booksList: List<Book>) {
     view?.adapter =
         MyItemRecyclerViewAdapter(booksList, listener)
+
+  }
+
+  fun updateListEntity(booksList: List<BookEntity>) {
+    view?.adapter =
+        MyItemRecyclerViewAdapterEntity(booksList, listener)
 
   }
 

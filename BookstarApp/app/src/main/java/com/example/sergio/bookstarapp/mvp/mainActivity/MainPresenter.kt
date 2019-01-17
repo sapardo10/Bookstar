@@ -1,8 +1,10 @@
 package com.example.sergio.bookstarapp.mvp.mainActivity
 
+import android.content.Context
 import com.example.sergio.bookstarapp.api.Model.ApiResponseSearch
 import com.example.sergio.bookstarapp.api.Model.Book
 import com.example.sergio.bookstarapp.api.RetrofitClient
+import com.example.sergio.bookstarapp.mvp.interactor.BookInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -14,8 +16,10 @@ class MainPresenter(private val mView: MainActivityView?) {
   }
 
   var disposable: Disposable? = null
+  var bookInteractor: BookInteractor? = null
 
-  fun start() {
+  init {
+    bookInteractor = BookInteractor(mView as Context)
   }
 
   fun searchBooks(searchText: String) {
@@ -34,6 +38,13 @@ class MainPresenter(private val mView: MainActivityView?) {
 
   private fun showError(error: String?) {
     mView?.showErrorToast(error)
+  }
+
+  fun saveFavorite(
+    book: Book,
+    isFavorite: Boolean
+  ) {
+    bookInteractor!!.saveFavorite(book, isFavorite)
   }
 
 }

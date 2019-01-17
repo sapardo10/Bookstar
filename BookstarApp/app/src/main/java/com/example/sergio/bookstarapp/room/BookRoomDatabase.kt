@@ -8,6 +8,8 @@ import android.content.Context
 @Database(entities = [BookEntity::class], version = 1)
 abstract class BookRoomDatabase : RoomDatabase() {
 
+  abstract fun bookDao(): BookDao
+
   companion object {
     var INSTANCE: BookRoomDatabase? = null
 
