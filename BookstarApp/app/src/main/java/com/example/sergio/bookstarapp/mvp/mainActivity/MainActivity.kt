@@ -1,6 +1,9 @@
 package com.example.sergio.bookstarapp.mvp.mainActivity
 
+import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import butterknife.ButterKnife
@@ -9,8 +12,11 @@ import com.example.sergio.bookstarapp.R.layout
 import com.example.sergio.bookstarapp.api.Model.Book
 import com.example.sergio.bookstarapp.mvp.BooksFragment
 import com.example.sergio.bookstarapp.mvp.BooksFragment.OnListFragmentInteractionListener
+import com.example.sergio.bookstarapp.mvp.bookDetail.BookDetailActivity
+import com.example.sergio.bookstarapp.mvp.bookDetail.BookDetailFragment
 import com.example.sergio.bookstarapp.mvp.bookDetail.BookDetailFragment.BookDetailFragmentInteractionListener
 import com.example.sergio.bookstarapp.mvp.mainActivity.SearchBarFragment.SearchBarFragmentInteractionListener
+import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity(),
     MainActivityView,
@@ -23,6 +29,7 @@ class MainActivity : AppCompatActivity(),
   //UI BINDINGS
 
   private var booksListFragment: BooksFragment? = null
+  private var bookDetailFragment: BookDetailFragment? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -30,6 +37,16 @@ class MainActivity : AppCompatActivity(),
     presenter = MainPresenter(this)
     ButterKnife.bind(this)
     booksListFragment = supportFragmentManager.findFragmentById(R.id.books_list) as BooksFragment?
+    bookDetailFragment =
+        supportFragmentManager.findFragmentById(R.id.book_detail) as BookDetailFragment?
+  }
+
+  override fun onSaveInstanceState(
+    outState: Bundle?,
+    outPersistentState: PersistableBundle?
+  ) {
+    super.onSaveInstanceState(outState, outPersistentState)
+
   }
 
   override fun updateBooksList(books: List<Book>) {
@@ -53,8 +70,17 @@ class MainActivity : AppCompatActivity(),
 
   //BOOK LIST BEHAVIOUR
 
-  override fun onListFragmentInteraction(item: Book?) {
+  override fun onListFragmentInteraction(item: Book) {
     var title = item?.title
+    if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+      bookDetailFragment!!.updateDetails(item)
+    } else {
+      val gson = Gson()
+      val intent = Intent(this, BookDetailActivity::class.java)
+      intent.putExtra("book", gson.toJson(item))
+      startActivity(intent)
+
+    }
     Toast.makeText(this, "ApiResponseSearch item clicked $title", Toast.LENGTH_SHORT)
         .show()
   }

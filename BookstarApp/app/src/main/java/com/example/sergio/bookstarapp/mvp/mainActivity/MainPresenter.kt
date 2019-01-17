@@ -3,7 +3,6 @@ package com.example.sergio.bookstarapp.mvp.mainActivity
 import com.example.sergio.bookstarapp.api.Model.ApiResponseSearch
 import com.example.sergio.bookstarapp.api.Model.Book
 import com.example.sergio.bookstarapp.api.RetrofitClient
-import com.example.sergio.bookstarapp.mvp.dummy.BookItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -37,7 +36,5 @@ class MainPresenter(private val mView: MainActivityView?) {
     mView?.showErrorToast(error)
   }
 
-  fun updateBookDetail(book: BookItem) {
-  }
 }
 
