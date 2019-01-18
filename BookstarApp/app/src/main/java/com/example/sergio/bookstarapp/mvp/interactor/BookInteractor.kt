@@ -21,10 +21,18 @@ class BookInteractor(val context: Context) {
     booksLiveData = bookDao?.getAllBooks()!!
   }
 
+  /**
+   * Get all the books from the database (the favorites from the user)
+   */
   fun getAllBooks(): LiveData<List<BookEntity>> {
     return booksLiveData
   }
 
+  /**
+   * Handles the user action of clicking on the favorite check, if its checked the method will
+   * insert the book into the database, if its unchecked the method will delete the book from
+   * the database
+   */
   fun saveFavorite(
     book: Book,
     isFavorite: Boolean
@@ -56,10 +64,16 @@ class BookInteractor(val context: Context) {
 
   }
 
+  /**
+   * Inserts a book into the database
+   */
   fun insert(book: BookEntity) {
     insertAsyncTask(bookDao!!).execute(book)
   }
 
+  /**
+   * Deletes a book from the database
+   */
   fun delete(book: BookEntity) {
     deleteAsyncTask(bookDao!!).execute(book)
   }

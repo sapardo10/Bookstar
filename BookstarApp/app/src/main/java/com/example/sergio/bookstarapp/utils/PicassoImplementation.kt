@@ -5,10 +5,16 @@ import android.widget.ImageView
 import com.example.sergio.bookstarapp.R
 import com.squareup.picasso.Picasso
 
+/**
+ * Class that uses picasso to load images into imageViews
+ */
 class PicassoImplementation {
 
   companion object {
 
+    /**
+     * load image from uri into an imageview, put a placeholder while the image loads
+     */
     fun loadImageOnView(
       context: Context,
       imageView: ImageView,
@@ -23,6 +29,9 @@ class PicassoImplementation {
           .into(imageView)
     }
 
+    /**
+     * Generate the url to get an image from the api according to documentation
+     */
     fun generateFinalUrl(
       value: String,
       size: String

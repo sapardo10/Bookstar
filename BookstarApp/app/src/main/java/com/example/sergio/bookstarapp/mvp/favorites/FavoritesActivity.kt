@@ -29,6 +29,8 @@ class FavoritesActivity : AppCompatActivity(), FavoritesView, OnListFragmentInte
 
   private var presenter: FavoritesPresenter? = null
 
+  //METHODS
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_favorites)
@@ -62,9 +64,14 @@ class FavoritesActivity : AppCompatActivity(), FavoritesView, OnListFragmentInte
         .show()
   }
 
+  //BOOK LIST BEHAVIOUR
+
   override fun onListFragmentInteraction(item: Book) {
   }
 
+  //BOOK DETAIL BEHAVIOUR
+
+  //Empty because it will never receive a book from service
   override fun onFavoritePressedFragmentInteraction(
     book: Book,
     isFavorite: Boolean
@@ -78,7 +85,10 @@ class FavoritesActivity : AppCompatActivity(), FavoritesView, OnListFragmentInte
     presenter!!.saveFavorite(book, isFavorite)
     var title = book.title
     if (isFavorite) {
-      Toast.makeText(this, "Saved $title in favorites", Toast.LENGTH_SHORT)
+      Toast.makeText(this, "Saved $title in Favorites", Toast.LENGTH_SHORT)
+          .show()
+    } else {
+      Toast.makeText(this, "Removed $title from Favorites", Toast.LENGTH_SHORT)
           .show()
     }
   }

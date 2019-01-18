@@ -1,5 +1,6 @@
 package com.example.sergio.bookstarapp.mvp.bookDetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
@@ -28,20 +29,15 @@ class BookDetailActivity : AppCompatActivity(), BookDetailFragmentInteractionLis
 
   private lateinit var presenter: BookDetailPresenter
 
+  //METHODS
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_book_detail)
     presenter = BookDetailPresenter(this)
     val isEntity = intent.getBooleanExtra(IS_ENTITY, false)
     bindFragments()
-    if (!isEntity) {
-      var book = deserializeBookObjectFromGson(intent.getStringExtra(INTENT_BOOK))
-      bookDetailFragment!!.updateDetails(book)
-    } else {
-      var book = deserializeBookEntityObjectFromGson(intent.getStringExtra(INTENT_BOOK))
-      bookDetailFragment!!.updateDetails(book)
-    }
-
+    initializeBookDetails(intent, isEntity)
   }
 
   /**
@@ -50,6 +46,23 @@ class BookDetailActivity : AppCompatActivity(), BookDetailFragmentInteractionLis
   private fun bindFragments() {
     bookDetailFragment =
         supportFragmentManager.findFragmentById(R.id.book_detail) as BookDetailFragment?
+  }
+
+  /**
+   * It diffirientiates between the two type of data and shows the details on the fragment
+   * depending on the book passed by intent
+   */
+  private fun initializeBookDetails(
+    intent: Intent,
+    isEntity: Boolean
+  ) {
+    if (!isEntity) {
+      var book: Book = deserializeBookObjectFromGson(intent.getStringExtra(INTENT_BOOK))
+      bookDetailFragment!!.updateDetails(book)
+    } else {
+      var book: BookEntity = deserializeBookEntityObjectFromGson(intent.getStringExtra(INTENT_BOOK))
+      bookDetailFragment!!.updateDetails(book)
+    }
   }
 
   /**

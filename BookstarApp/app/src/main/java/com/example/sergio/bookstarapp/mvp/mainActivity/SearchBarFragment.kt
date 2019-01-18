@@ -59,6 +59,10 @@ class SearchBarFragment : Fragment() {
   }
 
   interface SearchBarFragmentInteractionListener {
+
+    /**
+     * It handles the behaviour of the app when the users presses the search button
+     */
     fun onSearchFragmentInteraction(searchText: String)
   }
 

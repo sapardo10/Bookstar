@@ -4,6 +4,10 @@ import com.google.gson.annotations.SerializedName
 import java.util.Arrays
 
 object Model {
+
+  /**
+   * It collects the information when using the search endpoint of the API
+   */
   data class ApiResponseSearch(
     @SerializedName("start") val start: Int,
     @SerializedName("num_found") val numFound: Int,

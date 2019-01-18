@@ -26,10 +26,6 @@ abstract class BookRoomDatabase : RoomDatabase() {
       return INSTANCE
     }
 
-    fun destroyDB() {
-      INSTANCE = null
-    }
-
   }
 
 }

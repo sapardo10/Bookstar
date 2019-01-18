@@ -97,8 +97,6 @@ class MainActivity : AppCompatActivity(),
   override fun updateBooksList(books: List<Book>) {
     progressBar.visibility = View.GONE
     booksListFragment!!.updateList(books)
-    Toast.makeText(this, "result update with", Toast.LENGTH_SHORT)
-        .show()
   }
 
   override fun showErrorToast(error: String?) {
@@ -111,8 +109,6 @@ class MainActivity : AppCompatActivity(),
   override fun onSearchFragmentInteraction(searchText: String) {
     progressBar.visibility = View.VISIBLE
     presenter.searchBooks(searchText)
-    Toast.makeText(this, "Search bar pressed with $searchText", Toast.LENGTH_SHORT)
-        .show()
   }
 
   //BOOK LIST BEHAVIOUR
@@ -124,8 +120,6 @@ class MainActivity : AppCompatActivity(),
     } else {
       openBookDetailActivity(item)
     }
-    Toast.makeText(this, "ApiResponseSearch item clicked $title", Toast.LENGTH_SHORT)
-        .show()
   }
 
   /**

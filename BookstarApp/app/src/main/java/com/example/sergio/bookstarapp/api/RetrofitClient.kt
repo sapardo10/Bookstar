@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitClient {
 
   companion object {
+    /**End point used*/
     private const val API_URL = "http://openlibrary.org/"
 
     private var retrofit: Retrofit? = null

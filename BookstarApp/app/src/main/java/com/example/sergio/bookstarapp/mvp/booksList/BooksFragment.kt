@@ -72,7 +72,12 @@ class BooksFragment : Fragment() {
   }
 
   interface OnListFragmentInteractionListener {
+    /**
+     * It handles what the app should do when the user clicks a book from any of the list on the app
+     */
     fun onListFragmentInteraction(item: Book)
+
+    //It does the same but on the favorites screen where the books comes from the database
     fun onListFragmentInteraction(item: BookEntity)
   }
 

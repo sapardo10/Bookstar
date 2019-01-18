@@ -14,4 +14,5 @@
   <string name="image_of_the_cover_of_the_book">Image of the cover of the book</string>
   <string name="button_to_start_the_search">button to start the search</string>
   <string name="select_a_book_to_see_the_details">Select a book to see the details</string>
+  <string name="number_of_pages">Number of pages</string>
 </resources>
