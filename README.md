@@ -46,8 +46,11 @@ The packages are divided as it follows:
   - Rxjava
   - Room
   
+### Problems
+Due to a missunderstanding of the API the service that could provide more information about a book is not correctly fetched because the ID of the book provided by the search response does not correspond to the ID needed to fetch a book in the other service. The complete implementation of this update is on the code, it will be just missing the correct way to have the id to fetch the book.
+  
  # Author
- This application was made by Sergio Pardo
+ This application was made by Sergio Pardo. 
  It has the MIT liscense provided inside the repository
  
  
