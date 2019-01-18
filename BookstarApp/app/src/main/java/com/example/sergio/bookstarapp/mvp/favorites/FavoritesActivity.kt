@@ -59,6 +59,7 @@ class FavoritesActivity : AppCompatActivity(), FavoritesView, OnListFragmentInte
       val gson = Gson()
       val intent = Intent(this, BookDetailActivity::class.java)
       intent.putExtra("book", gson.toJson(item))
+      intent.putExtra("isEntity", true)
       startActivity(intent)
 
     }

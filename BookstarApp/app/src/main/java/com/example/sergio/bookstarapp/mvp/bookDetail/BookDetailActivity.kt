@@ -6,10 +6,19 @@ import android.widget.Toast
 import com.example.sergio.bookstarapp.R
 import com.example.sergio.bookstarapp.api.Model.Book
 import com.example.sergio.bookstarapp.mvp.bookDetail.BookDetailFragment.BookDetailFragmentInteractionListener
+import com.example.sergio.bookstarapp.room.BookEntity
 import com.google.gson.Gson
 
 class BookDetailActivity : AppCompatActivity(), BookDetailFragmentInteractionListener,
     BookDetailView {
+
+  //CONSTANTS
+  companion object {
+    /**Tag to save and take the book from the intent when starting this activity*/
+    const val INTENT_BOOK = "book"
+    /**If true, the object inside the intent is a BookEntity. Its a Book otherwise */
+    const val IS_ENTITY = "is_entity"
+  }
 
   //UI BINDINGS
 
@@ -23,9 +32,16 @@ class BookDetailActivity : AppCompatActivity(), BookDetailFragmentInteractionLis
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_book_detail)
     presenter = BookDetailPresenter(this)
-    val book = deserializeObjectFromGson(intent.getStringExtra("book"))
+    val isEntity = intent.getBooleanExtra(IS_ENTITY, false)
     bindFragments()
-    bookDetailFragment!!.updateDetails(book)
+    if (isEntity) {
+      var book = deserializeBookObjectFromGson(intent.getStringExtra(INTENT_BOOK))
+      bookDetailFragment!!.updateDetails(book)
+    } else {
+      var book = deserializeBookEntityObjectFromGson(intent.getStringExtra(INTENT_BOOK))
+      bookDetailFragment!!.updateDetails(book)
+    }
+
   }
 
   /**
@@ -39,9 +55,17 @@ class BookDetailActivity : AppCompatActivity(), BookDetailFragmentInteractionLis
   /**
    * It takes a string containing a json and it deserializes it to a Book Object
    */
-  private fun deserializeObjectFromGson(json: String): Book {
+  private fun deserializeBookObjectFromGson(json: String): Book {
     val gson = Gson()
     return gson.fromJson<Book>(json, Book::class.java)
+  }
+
+  /**
+   * It takes a string containing a json and it deserializes it to a BookEntity Object
+   */
+  private fun deserializeBookEntityObjectFromGson(json: String): BookEntity {
+    val gson = Gson()
+    return gson.fromJson<BookEntity>(json, BookEntity::class.java)
   }
 
   //BOOK DETAIL BEHAVIOUR
