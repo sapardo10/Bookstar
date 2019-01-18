@@ -1,14 +1,7 @@
 package com.example.sergio.bookstarapp.api
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
-import android.arch.persistence.room.TypeConverter
 import com.google.gson.annotations.SerializedName
 import java.util.Arrays
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-
-
 
 object Model {
   data class ApiResponseSearch(
@@ -17,14 +10,12 @@ object Model {
     @SerializedName("docs") val docs: List<Book>
   )
 
-  @Entity(tableName = "books")
   data class Book(
-    @SerializedName("cover_i") val coverId: Int,
+    @SerializedName("cover_i") val coverId: Long,
     @SerializedName("has_fulltext") val hasFullText: Boolean,
     @SerializedName("edition_count") val editionCount: Int,
     @SerializedName("title") val title: String,
     @SerializedName("author_name") val authorsName: Array<String>,
-    @PrimaryKey
     @SerializedName("key") val key: String,
     @SerializedName("first_publish_year") val firstPublishYear: Int
   ) {
@@ -46,7 +37,7 @@ object Model {
     }
 
     override fun hashCode(): Int {
-      var result = coverId
+      var result = coverId.toInt()
       result = 31 * result + hasFullText.hashCode()
       result = 31 * result + editionCount
       result = 31 * result + title.hashCode()

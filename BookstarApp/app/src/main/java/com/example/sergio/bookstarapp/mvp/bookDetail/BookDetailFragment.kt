@@ -14,6 +14,7 @@ import butterknife.ButterKnife
 import com.example.sergio.bookstarapp.R
 import com.example.sergio.bookstarapp.api.Model.Book
 import com.example.sergio.bookstarapp.room.BookEntity
+import com.example.sergio.bookstarapp.utils.PicassoImplementation
 
 class BookDetailFragment : Fragment() {
 
@@ -75,6 +76,11 @@ class BookDetailFragment : Fragment() {
     favoriteCheckBox.isChecked = false
     editionCount.text = book.editionCount?.toString()
     firstPublish.text = book.firstPublishYear?.toString()
+    var imageId = book.coverId
+    if (imageId != 0L) {
+      var uri = PicassoImplementation.generateFinalUrl(book.coverId.toString(), "M")
+      PicassoImplementation.loadImageOnView(context!!, bookCover, uri)
+    }
   }
 
   fun updateDetails(book: BookEntity) {
@@ -83,6 +89,11 @@ class BookDetailFragment : Fragment() {
     favoriteCheckBox.isChecked = book.isFavorite
     editionCount.text = book.editionCount?.toString()
     firstPublish.text = book.firstPublishYear?.toString()
+    var imageId = book.coverId
+    if (imageId != 0L) {
+      var uri = PicassoImplementation.generateFinalUrl(book.coverId.toString(), "M")
+      PicassoImplementation.loadImageOnView(context!!, bookCover, uri)
+    }
   }
 
   private fun getNameAuthors(authorsName: Array<String>): String {

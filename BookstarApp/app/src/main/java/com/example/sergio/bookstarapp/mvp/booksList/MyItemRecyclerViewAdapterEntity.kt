@@ -4,13 +4,16 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.sergio.bookstarapp.R
 import com.example.sergio.bookstarapp.mvp.booksList.BooksFragment.OnListFragmentInteractionListener
 import com.example.sergio.bookstarapp.mvp.booksList.MyItemRecyclerViewAdapterEntity.ViewHolder
 import com.example.sergio.bookstarapp.room.BookEntity
-import kotlinx.android.synthetic.main.fragment_books_list_item.view.content
-import kotlinx.android.synthetic.main.fragment_books_list_item.view.item_number
+import com.example.sergio.bookstarapp.utils.PicassoImplementation
+import kotlinx.android.synthetic.main.fragment_book_detail.view.book_title
+import kotlinx.android.synthetic.main.fragment_books_list_item.view.author
+import kotlinx.android.synthetic.main.fragment_books_list_item.view.book_cover
 
 class MyItemRecyclerViewAdapterEntity(
   private val mValues: List<BookEntity>,
@@ -43,7 +46,11 @@ class MyItemRecyclerViewAdapterEntity(
     holder.mIdView.text = item?.title
     var author = item.author
     holder.mContentView.text = author
-
+    var imageId = item.coverId
+    if (imageId != 0L) {
+      var uri = PicassoImplementation.generateFinalUrl(item.coverId.toString(), "S")
+      PicassoImplementation.loadImageOnView(holder.mView.context, holder.mCoverView, uri)
+    }
     with(holder.mView) {
       tag = item
       setOnClickListener(mOnClickListener)
@@ -53,8 +60,9 @@ class MyItemRecyclerViewAdapterEntity(
   override fun getItemCount(): Int = mValues.size
 
   inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-    val mIdView: TextView = mView.item_number
-    val mContentView: TextView = mView.content
+    val mIdView: TextView = mView.book_title
+    val mContentView: TextView = mView.author
+    val mCoverView: ImageView = mView.book_cover
 
     override fun toString(): String {
       return super.toString() + " '" + mContentView.text + "'"

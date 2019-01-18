@@ -8,7 +8,7 @@
     >
 
   <fragment
-      android:id="@+id/book_detail_fragment"
+      android:id="@+id/book_detail"
       android:name="com.example.sergio.bookstarapp.mvp.bookDetail.BookDetailFragment"
       android:layout_width="match_parent"
       android:layout_height="match_parent"

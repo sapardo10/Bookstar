@@ -13,4 +13,5 @@
   <string name="favorites">Favorite Books</string>
   <string name="of_editions"># of editions</string>
   <string name="first_publish">First publish</string>
+  <string name="image_of_the_cover_of_the_book">Image of the cover of the book</string>
 </resources>

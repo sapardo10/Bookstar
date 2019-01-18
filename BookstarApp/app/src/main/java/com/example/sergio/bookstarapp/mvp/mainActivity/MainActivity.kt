@@ -26,11 +26,6 @@ class MainActivity : AppCompatActivity(),
     OnListFragmentInteractionListener,
     SearchBarFragmentInteractionListener,
     BookDetailFragmentInteractionListener {
-  override fun onListFragmentInteraction(item: BookEntity) {
-    TODO(
-        "not implemented"
-    ) //To change body of created functions use File | Settings | File Templates.
-  }
 
   //UI BINDINGS
 
@@ -46,13 +41,9 @@ class MainActivity : AppCompatActivity(),
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(layout.activity_main)
-    initializePresenter()
+    presenter = MainPresenter(this)
     ButterKnife.bind(this)
     bindFragments()
-  }
-
-  private fun initializePresenter() {
-    presenter = MainPresenter(this)
   }
 
   /**
@@ -132,6 +123,12 @@ class MainActivity : AppCompatActivity(),
         .show()
   }
 
+  /**
+   * Empty method to handle books coming from the local database
+   */
+  override fun onListFragmentInteraction(item: BookEntity) {
+  }
+
   //BOOK DETAIL BEHAVIOUR
 
   override fun onFavoritePressedFragmentInteraction(
@@ -140,7 +137,10 @@ class MainActivity : AppCompatActivity(),
   ) {
     presenter.saveFavorite(book, isFavorite)
     var title = book.title
-    Toast.makeText(this, "Favorite pressed with book: $title and $isFavorite", Toast.LENGTH_SHORT)
-        .show()
+    if (isFavorite) {
+      Toast.makeText(this, "Saved $title in favorites", Toast.LENGTH_SHORT)
+          .show()
+    }
   }
+
 }
