@@ -32,6 +32,7 @@ class BookDetailFragment : Fragment() {
   //VARIABLES
 
   private var book: Book? = null
+  private var bookEntity: BookEntity? = null
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -50,9 +51,12 @@ class BookDetailFragment : Fragment() {
     }
   }
 
-  fun onFavoritePressed(isFavorite: Boolean) {
+  private fun onFavoritePressed(isFavorite: Boolean) {
     if (book != null)
       listener?.onFavoritePressedFragmentInteraction(book!!, isFavorite)
+    else if (bookEntity != null) {
+      listener?.onFavoriteEntityPressedFragmentInteraction(bookEntity!!, isFavorite)
+    }
   }
 
   override fun onAttach(context: Context) {
@@ -84,6 +88,7 @@ class BookDetailFragment : Fragment() {
   }
 
   fun updateDetails(book: BookEntity) {
+    this.bookEntity = book
     bookTitle.text = book.title
     authors.text = book.author
     favoriteCheckBox.isChecked = book.isFavorite
@@ -110,6 +115,11 @@ class BookDetailFragment : Fragment() {
   interface BookDetailFragmentInteractionListener {
     fun onFavoritePressedFragmentInteraction(
       book: Book,
+      isFavorite: Boolean
+    )
+
+    fun onFavoriteEntityPressedFragmentInteraction(
+      book: BookEntity,
       isFavorite: Boolean
     )
   }

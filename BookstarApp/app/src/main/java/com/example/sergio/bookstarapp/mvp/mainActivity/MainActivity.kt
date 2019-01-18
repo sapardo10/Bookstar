@@ -143,4 +143,10 @@ class MainActivity : AppCompatActivity(),
     }
   }
 
+  override fun onFavoriteEntityPressedFragmentInteraction(
+    book: BookEntity,
+    isFavorite: Boolean
+  ) {
+  }
+
 }

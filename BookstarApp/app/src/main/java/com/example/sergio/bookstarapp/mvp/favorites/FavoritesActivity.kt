@@ -18,11 +18,6 @@ import com.google.gson.Gson
 
 class FavoritesActivity : AppCompatActivity(), FavoritesView, OnListFragmentInteractionListener,
     BookDetailFragmentInteractionListener {
-  override fun onListFragmentInteraction(item: Book) {
-    TODO(
-        "not implemented"
-    ) //To change body of created functions use File | Settings | File Templates.
-  }
 
   //UI BINDINGS
 
@@ -58,8 +53,8 @@ class FavoritesActivity : AppCompatActivity(), FavoritesView, OnListFragmentInte
     } else {
       val gson = Gson()
       val intent = Intent(this, BookDetailActivity::class.java)
-      intent.putExtra("book", gson.toJson(item))
-      intent.putExtra("isEntity", true)
+      intent.putExtra(BookDetailActivity.INTENT_BOOK, gson.toJson(item))
+      intent.putExtra(BookDetailActivity.IS_ENTITY, true)
       startActivity(intent)
 
     }
@@ -67,10 +62,25 @@ class FavoritesActivity : AppCompatActivity(), FavoritesView, OnListFragmentInte
         .show()
   }
 
+  override fun onListFragmentInteraction(item: Book) {
+  }
+
   override fun onFavoritePressedFragmentInteraction(
     book: Book,
     isFavorite: Boolean
   ) {
+  }
+
+  override fun onFavoriteEntityPressedFragmentInteraction(
+    book: BookEntity,
+    isFavorite: Boolean
+  ) {
+    presenter!!.saveFavorite(book, isFavorite)
+    var title = book.title
+    if (isFavorite) {
+      Toast.makeText(this, "Saved $title in favorites", Toast.LENGTH_SHORT)
+          .show()
+    }
   }
 
 }

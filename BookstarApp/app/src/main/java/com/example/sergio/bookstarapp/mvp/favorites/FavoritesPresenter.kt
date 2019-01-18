@@ -15,4 +15,11 @@ class FavoritesPresenter(private val mView: FavoritesView) {
     allFavorites = bookInteractor!!.getAllBooks()
   }
 
+  fun saveFavorite(
+    book: BookEntity,
+    isFavorite: Boolean
+  ) {
+    bookInteractor!!.saveFavorite(book, isFavorite)
+  }
+
 }

@@ -42,6 +42,18 @@ class BookInteractor(val context: Context) {
 
   }
 
+  fun saveFavorite(
+    book: BookEntity,
+    isFavorite: Boolean
+  ) {
+    if (isFavorite) {
+      insert(book)
+    } else {
+      delete(book)
+    }
+
+  }
+
   fun insert(book: BookEntity) {
     insertAsyncTask(bookDao!!).execute(book)
   }

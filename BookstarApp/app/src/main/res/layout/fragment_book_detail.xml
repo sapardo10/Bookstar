@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/book_placeholder"
+        app:srcCompat="@drawable/book_placeholder_wrapped"
         />
     <TextView
         android:id="@+id/book_title"
@@ -52,11 +52,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:maxLines="1"
         android:text="@string/authors"
         app:layout_constraintBottom_toBottomOf="@+id/authors_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.008"
-
         app:layout_constraintStart_toEndOf="@+id/authors_label"
         app:layout_constraintTop_toTopOf="@+id/authors_label"
         />
@@ -90,6 +90,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:maxLines="1"
         android:text="@string/of_editions"
         app:layout_constraintBottom_toBottomOf="@+id/edition_count_label"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,6 +118,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:maxLines="1"
         android:text="@string/first_publish"
         app:layout_constraintBottom_toBottomOf="@+id/first_publish_label"
         app:layout_constraintEnd_toEndOf="parent"

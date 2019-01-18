@@ -34,7 +34,7 @@ class BookDetailActivity : AppCompatActivity(), BookDetailFragmentInteractionLis
     presenter = BookDetailPresenter(this)
     val isEntity = intent.getBooleanExtra(IS_ENTITY, false)
     bindFragments()
-    if (isEntity) {
+    if (!isEntity) {
       var book = deserializeBookObjectFromGson(intent.getStringExtra(INTENT_BOOK))
       bookDetailFragment!!.updateDetails(book)
     } else {
@@ -72,6 +72,18 @@ class BookDetailActivity : AppCompatActivity(), BookDetailFragmentInteractionLis
 
   override fun onFavoritePressedFragmentInteraction(
     book: Book,
+    isFavorite: Boolean
+  ) {
+    presenter.saveFavorite(book, isFavorite)
+    var title = book.title
+    if (isFavorite) {
+      Toast.makeText(this, "Saved $title in favorites", Toast.LENGTH_SHORT)
+          .show()
+    }
+  }
+
+  override fun onFavoriteEntityPressedFragmentInteraction(
+    book: BookEntity,
     isFavorite: Boolean
   ) {
     presenter.saveFavorite(book, isFavorite)
