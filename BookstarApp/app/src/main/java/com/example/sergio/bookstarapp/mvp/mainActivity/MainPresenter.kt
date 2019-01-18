@@ -15,8 +15,8 @@ class MainPresenter(private val mView: MainActivityView?) {
     RetrofitClient.createBookService()
   }
 
-  var disposable: Disposable? = null
-  var bookInteractor: BookInteractor? = null
+  private var disposable: Disposable? = null
+  private var bookInteractor: BookInteractor? = null
 
   init {
     bookInteractor = BookInteractor(mView as Context)

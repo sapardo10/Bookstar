@@ -9,8 +9,6 @@ class PicassoImplementation {
 
   companion object {
 
-    const val KEY_OLID = "OLID"
-
     fun loadImageOnView(
       context: Context,
       imageView: ImageView,
@@ -29,9 +27,7 @@ class PicassoImplementation {
       value: String,
       size: String
     ): String {
-      var uri =
-        "http://covers.openlibrary.org/b/ID/$value-$size.jpg"
-      return uri
+      return "http://covers.openlibrary.org/b/ID/$value-$size.jpg"
     }
   }
 }

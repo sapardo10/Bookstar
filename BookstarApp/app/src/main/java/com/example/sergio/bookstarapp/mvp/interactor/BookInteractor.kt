@@ -29,7 +29,9 @@ class BookInteractor(val context: Context) {
     book: Book,
     isFavorite: Boolean
   ) {
-    var author = book.authorsName?.get(0)
+    var author = ""
+    if (book.authorsName != null)
+      author = book.authorsName?.get(0)
     var bookToSave = BookEntity(
         book.key, book.title, author, isFavorite, book.coverId, book.hasFullText, book.editionCount,
         book.firstPublishYear

@@ -11,7 +11,6 @@ import com.example.sergio.bookstarapp.api.Model.Book
 import com.example.sergio.bookstarapp.mvp.booksList.BooksFragment.OnListFragmentInteractionListener
 import com.example.sergio.bookstarapp.mvp.booksList.MyItemRecyclerViewAdapter.ViewHolder
 import com.example.sergio.bookstarapp.utils.PicassoImplementation
-import kotlinx.android.synthetic.main.activity_favorites.view.title
 import kotlinx.android.synthetic.main.fragment_books_list_item.view.author
 import kotlinx.android.synthetic.main.fragment_books_list_item.view.book_cover
 import kotlinx.android.synthetic.main.fragment_books_list_item.view.book_title
