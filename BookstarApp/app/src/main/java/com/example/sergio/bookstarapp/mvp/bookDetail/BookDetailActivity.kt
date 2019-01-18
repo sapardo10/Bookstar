@@ -101,8 +101,8 @@ class BookDetailActivity : AppCompatActivity(), BookDetailFragmentInteractionLis
   ) {
     presenter.saveFavorite(book, isFavorite)
     var title = book.title
-    if (isFavorite) {
-      Toast.makeText(this, "Saved $title in favorites", Toast.LENGTH_SHORT)
+    if (!isFavorite) {
+      Toast.makeText(this, "Deleted $title from favorites", Toast.LENGTH_SHORT)
           .show()
     }
   }

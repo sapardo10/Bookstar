@@ -60,8 +60,6 @@ class FavoritesActivity : AppCompatActivity(), FavoritesView, OnListFragmentInte
       startActivity(intent)
 
     }
-    Toast.makeText(this, "item clicked $title", Toast.LENGTH_SHORT)
-        .show()
   }
 
   //BOOK LIST BEHAVIOUR
