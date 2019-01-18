@@ -69,7 +69,7 @@ class BookInteractor(val context: Context) {
       try {
         mAsyncTaskDao.insert(params[0])
       } catch (e: Exception) {
-        Log.d("ERROR", "The element already exist on the database")
+        Log.d("ERROR", "The element already exists on the database")
       }
 
       return null

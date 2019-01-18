@@ -39,6 +39,8 @@ dependencies {
   implementation 'com.android.support:cardview-v7:28.0.0'
   implementation 'com.android.support:recyclerview-v7:28.0.0'
   implementation 'com.android.support:support-v4:28.0.0'
+  //progress bar
+  implementation 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
   //picasso
   implementation 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
   //butterknife

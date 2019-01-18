@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.sergio.bookstarapp.R
 import com.example.sergio.bookstarapp.R.layout
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity(),
 
   private var booksListFragment: BooksFragment? = null
   private var bookDetailFragment: BookDetailFragment? = null
+  @BindView(R.id.progress_bar) lateinit var progressBar: View
 
   //VARIABLES
 
@@ -92,6 +95,7 @@ class MainActivity : AppCompatActivity(),
   }
 
   override fun updateBooksList(books: List<Book>) {
+    progressBar.visibility = View.GONE
     booksListFragment!!.updateList(books)
     Toast.makeText(this, "result update with", Toast.LENGTH_SHORT)
         .show()
@@ -105,6 +109,7 @@ class MainActivity : AppCompatActivity(),
   //SEARCH BAR BEHAVIOUR
 
   override fun onSearchFragmentInteraction(searchText: String) {
+    progressBar.visibility = View.VISIBLE
     presenter.searchBooks(searchText)
     Toast.makeText(this, "Search bar pressed with $searchText", Toast.LENGTH_SHORT)
         .show()

@@ -24,10 +24,14 @@ class BookDetailFragment : Fragment() {
 
   @BindView(R.id.book_title) lateinit var bookTitle: TextView
   @BindView(R.id.authors_text) lateinit var authors: TextView
+  @BindView(R.id.authors_label) lateinit var authorsLabel: TextView
   @BindView(R.id.book_cover) lateinit var bookCover: ImageView
   @BindView(R.id.ic_favorite) lateinit var favoriteCheckBox: CheckBox
   @BindView(R.id.edition_count) lateinit var editionCount: TextView
+  @BindView(R.id.edition_count_label) lateinit var editionCountLabel: TextView
   @BindView(R.id.first_publish) lateinit var firstPublish: TextView
+  @BindView(R.id.first_publish_label) lateinit var firstPublishLabel: TextView
+  @BindView(R.id.text_placeholder) lateinit var textPlaceholder: TextView
 
   //VARIABLES
 
@@ -42,6 +46,7 @@ class BookDetailFragment : Fragment() {
     var view = inflater.inflate(R.layout.fragment_book_detail, container, false)
     ButterKnife.bind(this, view)
     bindChangeStateListener()
+    hideDetails()
     return view
   }
 
@@ -84,7 +89,10 @@ class BookDetailFragment : Fragment() {
     if (imageId != 0L) {
       var uri = PicassoImplementation.generateFinalUrl(book.coverId.toString(), "M")
       PicassoImplementation.loadImageOnView(context!!, bookCover, uri)
+    } else {
+      bookCover.setImageResource(R.drawable.book_placeholder_wrapped)
     }
+    showDetails()
   }
 
   fun updateDetails(book: BookEntity) {
@@ -98,7 +106,10 @@ class BookDetailFragment : Fragment() {
     if (imageId != 0L) {
       var uri = PicassoImplementation.generateFinalUrl(book.coverId.toString(), "M")
       PicassoImplementation.loadImageOnView(context!!, bookCover, uri)
+    } else {
+      bookCover.setImageResource(R.drawable.book_placeholder_wrapped)
     }
+    showDetails()
   }
 
   private fun getNameAuthors(authorsName: Array<String>): String {
@@ -110,6 +121,32 @@ class BookDetailFragment : Fragment() {
       }
     }
     return res
+  }
+
+  private fun showDetails() {
+    bookTitle.visibility = View.VISIBLE
+    authors.visibility = View.VISIBLE
+    authorsLabel.visibility = View.VISIBLE
+    bookCover.visibility = View.VISIBLE
+    favoriteCheckBox.visibility = View.VISIBLE
+    editionCount.visibility = View.VISIBLE
+    editionCountLabel.visibility = View.VISIBLE
+    firstPublish.visibility = View.VISIBLE
+    firstPublishLabel.visibility = View.VISIBLE
+    textPlaceholder.visibility = View.GONE
+  }
+
+  private fun hideDetails() {
+    bookTitle.visibility = View.GONE
+    authors.visibility = View.GONE
+    authorsLabel.visibility = View.GONE
+    bookCover.visibility = View.GONE
+    favoriteCheckBox.visibility = View.GONE
+    editionCount.visibility = View.GONE
+    editionCountLabel.visibility = View.GONE
+    firstPublish.visibility = View.GONE
+    firstPublishLabel.visibility = View.GONE
+    textPlaceholder.visibility = View.VISIBLE
   }
 
   interface BookDetailFragmentInteractionListener {
