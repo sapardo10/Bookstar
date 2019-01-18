@@ -45,3 +45,11 @@ The packages are divided as it follows:
   - Retrofit
   - Rxjava
   - Room
+  
+ # Author
+ This application was made by Sergio Pardo
+ It has the MIT liscense provided inside the repository
+ 
+ 
+ 
+Eeny, meeny, miny, moe with wich book should I go?
