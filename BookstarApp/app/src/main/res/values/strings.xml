@@ -2,7 +2,7 @@
   <string name="app_name">BookstarApp</string>
   <string name="search">Search</string>
   <string name="books">Books</string>
-  <string name="write_the_author_or_the_title_of_the_book">Write the author or the title of the book</string>
+  <string name="write_the_author_or_the_title_of_the_book">Search by title or author</string>
   <string name="no_authors_text">No authors</string>
   <string name="title_activity_favorites">FavoritesActivity</string>
   <string name="cover_of_the_book">Cover of the book</string>
